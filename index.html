@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rest Countries</title>
+    <!-- bootstrap -->
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <!-- css -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Rest Countries</h1>
+    <div id="country-details">
+
+    </div>
+    <div id="countryDiv">
+
+    </div>
+
+    <script>
+        fetch('https://restcountries.eu/rest/v2/all')
+            .then(response => response.json())
+            .then(data => displayCountriesName(data));
+
+        const displayCountriesName = countries => {
+            const countriesDiv = document.getElementById('countryDiv');
+            for (let i = 0; i < countries.length; i++) {
+                const country = countries[i];
+                console.log(country);
+                const countryName = country.name;
+                const newDiv = document.createElement('div');
+                newDiv.className = 'singleDiv';
+                const h1 = document.createElement('h1');
+                h1.innerText = countryName;
+
+                const countryCapital = country.capital;
+                const h5 = document.createElement('h5');
+                h5.innerText = countryCapital;
+                // console.log(countryCapital)
+
+                const button = document.createElement('button');
+                button.innerText = "Details";
+                button.className = 'btn btn-primary';
+
+                button.onclick = function() {
+                    const countryDetails = document.getElementById('country-details');
+                    // console.log('button clicked');
+                    // const image = document.createElement('img');
+                    // image.src = country.flag;
+                    // countryDetails.appendChild(image);
+                    countryDetails.innerHTML = `
+                    <img src="${country.flag}">
+                    <p>Population: ${country.population}</p>
+                    <p>Region: ${country.region}</p>
+                    <p>Area: ${country.area}</p>
+                    `;
+
+
+                };
+
+                newDiv.appendChild(h1);
+                newDiv.appendChild(h5);
+                newDiv.appendChild(button);
+                countriesDiv.appendChild(newDiv);
+
+
+                // const displayDetails = details => {
+                //     console.log('button clicked');
+                //     const countryDetails = document.getElementById('country-details');
+                //     const detailsDiv = document.createElement('div');
+
+                //     const amrDiv = details;
+                //     console.log(amrDiv)
+                // }
+
+            }
+
+        }
+    </script>
+</body>
+
+</html>

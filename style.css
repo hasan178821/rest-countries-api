@@ -1,0 +1,28 @@
+.singleDiv {
+    border: 1px solid red;
+    width: 60%;
+    padding: 15px 30px;
+    font-size: 21px;
+    margin: 20px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+#countryDiv {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+#country-details {
+    margin-left: 20px;
+}
+
+#country-details img {
+    width: 400px;
+    height: 200px;
+    margin: 0 auto;
+}
+
+#country-details p {
+    margin-left: 40px;
+}
